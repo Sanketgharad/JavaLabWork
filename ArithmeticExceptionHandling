@@ -1,0 +1,24 @@
+ class Sample {
+    public static void main(String[] args) {
+        int b = 15; // sample value for b
+        float c = 0;
+        int a = 0;
+        try {
+            if (a != 0) {
+                c = (float) b / a; // type cast b to float to ensure floating-point division
+                System.out.println("no exception");
+                System.out.println(c);
+            } else {
+                throw new ArithmeticException("Division by zero is not allowed");
+	
+            }
+        } catch (ArithmeticException e) {
+            System.out.println("Exception occurred: " + e);
+        }
+	
+	finally{ 
+		  a=3;
+		 c=(float)b/a;
+		System.out.println(c);
+    }}
+}
