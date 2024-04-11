@@ -1,0 +1,31 @@
+
+abstract class AbstractClass{
+    public AbstractClass(){
+        System.out.println("AbstractClass::Constructor");
+    }
+    public void sayHello(){
+        System.out.println("Hello");
+    }
+    abstract public void greet();
+
+}
+
+class Sample1 extends AbstractClass{
+    @Override
+    public void greet() {
+        System.out.println("Good Day");
+    }
+}
+
+abstract class AbstractClass2 extends AbstractClass{
+    public void th(){
+        System.out.println("I am Student");
+    }
+}
+class Main_MethodClass {
+    public static void main(String[] args) {
+
+        Sample1 c = new Sample1();
+
+    }
+}
