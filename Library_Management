@@ -1,0 +1,165 @@
+import javax.naming.BinaryRefAddr;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+
+
+
+    class Library1 {
+        public ArrayList<String> books;
+        public int availableBookCount;
+
+        public Library1() {
+            books = new ArrayList<>();
+            populateBooks();
+            this.availableBookCount = books.size();
+        }
+
+            void populateBooks() {
+            books.add("Java Basics");
+            books.add("Advanced Java");
+            books.add("Database Design");
+            books.add("Computer Networks");
+        }
+
+        public ArrayList<String> getBooks() {
+            return books;
+        }
+
+        public int getAvailableBookCount() {
+            return availableBookCount;
+        }
+    }
+
+    class Student {
+        Library1 l=new Library1();
+         String registrationNumber;
+         String name;
+
+         String borrowedBook;
+
+         String Returnbook;
+
+        public Student(String registrationNumber, String name) {
+            this.registrationNumber = registrationNumber;
+            this.name = name;
+        }
+
+        public String getRegistrationNumber() {
+            return registrationNumber;
+        }
+
+        public boolean isValidRegistration() {
+            if (registrationNumber.length() != 10) {
+                return false;
+            }
+
+            String year = registrationNumber.substring(0, 4);
+            int yearInt = Integer.parseInt(year);
+
+            if (yearInt < 2000 || yearInt > 2024) {
+                return false;
+            }
+
+            String departmentCode = registrationNumber.substring(4, 7);
+            return departmentCode.equals("BCS") || departmentCode.equals("BIT") ||
+                    departmentCode.equals("BMC") || departmentCode.equals("BCH");
+        }
+
+        public void borrowBook(String book) {
+            this.borrowedBook = book;
+
+            l.books.remove(book);
+            System.out.println("The Available book is ");
+            System.out.println(l.books);
+            int availableBookCount = l.availableBookCount-l.books.size();
+            System.out.println("the number of book borrow::"+availableBookCount);
+
+        }
+
+        public String getBorrowedBook() {
+            return borrowedBook;
+        }
+        public void Returnbook(String book12){
+            this.Returnbook =book12;
+            l.books.add(book12);
+            System.out.println(l.books);
+            int availableBookCount = l.books.size();
+            System.out.println("the number of book count available in library ::"+availableBookCount);
+
+
+        }
+    }
+
+    class Main1 {
+        public static void main(String[] args) {
+            Library1 library = new Library1();
+            Scanner scanner = new Scanner(System.in);
+
+            System.out.println("Books available in the library:");
+            System.out.println(library.getBooks());
+
+            System.out.println("Enter registration number:");
+            String regNo = scanner.nextLine();
+
+            System.out.println("Enter student name:");
+            String studentName = scanner.nextLine();
+
+            Student student = new Student(regNo, studentName);
+
+            if (student.isValidRegistration()) {
+                System.out.println("Valid registration.");
+                int cond1;
+ do{
+                int cond;
+                System.out.println("enter 1 for borrow book\n" +
+                        "enter anything except 1 for return book ");
+                cond=scanner.nextInt();
+                scanner.nextLine();
+            if(cond==1) {
+                System.out.println("Enter the name of the book to borrow:");
+                String bookToBorrow;
+                bookToBorrow = scanner.nextLine();
+
+                if (library.getBooks().contains(bookToBorrow)) {
+                    System.out.println("Student name is " + studentName);
+                    System.out.println("regno is " + regNo);
+
+                    student.borrowBook(bookToBorrow);
+                    System.out.println("Book borrowed: " + student.getBorrowedBook());
+
+                    //  System.out.println("Avaiable book in library "+library.getBooks());
+                } else {
+                    System.out.println("Invalide book borrow");
+                }
+            }else {
+
+                System.out.println("return the boook :");
+                String book = scanner.nextLine();
+                scanner.nextLine();
+               // System.out.println();
+                System.out.println("Student name is " + studentName);
+                System.out.println("regno is " + regNo);
+                System.out.println("the Available books is:");
+                student.Returnbook(book);
+            }
+     System.out.println("enter 1 if you want to contiue do while loop");
+            cond1=scanner.nextInt();
+            scanner.nextLine();
+ }while (cond1==1);
+
+
+
+
+                    System.out.println("If you want to continue a Switch case:");
+               // cond=scanner.nextInt();
+                }
+             else {
+                System.out.println("Invalid registration number.");
+            }
+
+            scanner.close();
+        }
+    }
+
+
