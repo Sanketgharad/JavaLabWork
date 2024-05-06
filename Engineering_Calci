@@ -1,0 +1,115 @@
+import java.util.Scanner;
+
+class Calculator12 {
+
+    public int add(int...b) {
+        int sum = 0;
+        for (int i = 0; i < b.length; i++) {
+
+            //  System.out.println(b[i]);
+            sum = sum + b[i];
+            // System.out.println(sum);
+
+        }
+        return sum;
+
+    }
+
+    public long multi(int k,int...b) {
+        int mul = 1;
+        for (int i = 0; i < k; i++) {
+
+            //  System.out.println(b[i]);
+            mul = mul * b[i];
+            // System.out.println(mul);
+
+        }
+        return mul;
+    }
+
+    public int subt(int...b) {
+        int sub =b[0];
+        for (int i = 1; i < b.length; i++) {
+
+            //  System.out.println(b[i]);
+            sub =sub-b[i];
+            // System.out.println(sub);
+
+        }
+        return sub;
+
+    }
+    public float div(int k,int... b) {
+        if (b.length == 0) {
+            throw new IllegalArgumentException("No arguments provided.");
+        }
+
+        float division = b[0];
+
+        for (int i = 1; i < k; i++) {
+       //     if (b[i] == 0) {
+              //  throw new IllegalArgumentException("Division by zero is not allowed.");
+          //  }
+            division=division/b[i];
+        }
+
+        return division;
+    }
+
+
+    public static void main(String [] args){
+        int [] b=new int[100];
+
+        Scanner sc=new Scanner(System.in);
+        int k,q = 0;
+
+        System.out.println("which operation you want to be perform:: \n addition \n multiplication \n substraction \n division ");
+
+        String y=sc.nextLine();
+
+        System.out.println("enter the number to add and multiply");
+        k=sc.nextInt();
+        for(int i=0;i<k;i++){
+            System.out.println("i="+i);
+            b[i]=sc.nextInt();
+
+
+
+        }
+        String s="substraction";
+        String d="division";
+        String a="addition";
+        String m="multiplication";
+
+        Calculator12 s1=new Calculator12();
+
+
+            if (a.equals(y)) {
+
+                System.out.println("sum is:" + s1.add(b));
+
+            } else if (m.equals(y)) {
+
+                System.out.println("multiplication is:" + s1.multi(k, b));
+
+
+            } else if (s.equals(y)) {
+
+                System.out.println("subtr is:" + s1.subt(b));
+
+
+            } else if (d.equals(d)) {
+                System.out.println("Division is:" + s1.div(k, b));
+
+            }
+
+
+
+    }
+
+}
+
+
+
+
+
